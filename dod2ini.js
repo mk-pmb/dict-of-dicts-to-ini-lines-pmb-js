@@ -12,20 +12,36 @@ function eachKey(dict, sortCmp, iter) {
   keys.forEach(iter);
 }
 
+function translateValues(d, v) {
+  var t = (v && typeof v), s, l;
+  if (t === 'string') { return v; }
+  s = String(v);
+  l = d[s];
+  if (l === undefined) { return s; }
+  if (l === null) { return undefined; }
+  return l;
+}
+
 function dod2ini(sectionsDict, opt) {
   if (!opt) { opt = false; }
-  var lines = [], eol = ifUndef(opt.eol, ''),
-    pairSep = ifUndef(opt.pairSep, '=');
-  eachKey(sectionsDict, (opt.sectSort || opt.sort), function sect(s) {
+  var lines = [],
+    transVal = opt.translateValues,
+    pairSep = ifUndef(opt.pairSep, '='),
+    eol = ifUndef(opt.eol, '');
+  if (transVal && ((typeof transVal) !== 'function')) {
+    transVal = translateValues.bind(null, transVal);
+  }
+  eachKey(sectionsDict, (opt.sectSort || opt.sort), function sect(s, i) {
+    if (i > 0) { lines.push(eol); }
     lines.push('[' + s + ']' + eol);
     s = sectionsDict[s];
     eachKey(s, (opt.keySort || opt.sort), function pair(k) {
       [].concat(s[k]).forEach(function val(v) {
+        if (transVal) { v = transVal(v); }
         if (v === undefined) { return; }
         lines.push(String(k) + pairSep + String(v) + eol);
       });
     });
-    lines.push(eol);
   });
   return lines;
 }

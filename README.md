@@ -21,6 +21,10 @@ This module exports one function that holds some methods:
 Where `sectionsDict` is an object that maps section titles to dictionaries
 that will be used as the key-value-pairs.
 
+* Array values are processed by repeating the key for each value.
+  * But only if they are encountered directly in the 2nd level dictionary.
+* Pairs with `undefined` as the value are skipped unless configured otherwise.
+
 `opt` is an optional options object that supports these keys:
 
 * `sort`: Whether and how to sort sections (if `sectSort` is false-y)
@@ -33,6 +37,17 @@ that will be used as the key-value-pairs.
 * `keySort`: If truthy, override `sort` with respect to keys.
 * `eol`: Append this string to each line. Defaults to empty string.
 * `pairSep`: Put this string between key and value. Defaults to `'='`.
+* `translateValues`: If truthy, try to translate values.
+    This can be used to not suppress `undefined` values (by translating them
+    to e.g. the empty string), and to suppress unwanted values (by translating
+    them to `undefined`).
+  * If set to a function, it will be invoked with arguments `(val, key, sect)`.
+  * If set to an object or Array, translate empty string values and non-string,
+    values by property lookup.
+    * Objects are stringified for this lookup, and thus can masquerade as other
+      values. Just avoid using objects or nested Arrays as values.
+    * A result of `undefined` means "keep the original value", and `null`
+      means "skip this pair".
 
 
 

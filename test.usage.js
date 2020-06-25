@@ -16,7 +16,6 @@ fridge = {
     juice: ['orange', 'grape'],
   },
 };
-
 want = [
   '[sandwiches]',
   'cheese + bacon=1',
@@ -27,9 +26,9 @@ want = [
   'milk=empty :-(',
   'juice=orange',
   'juice=grape',
-  '',
 ];
 equal(dod2ini(fridge), want);
+
 
 opt = {
   sectSort: true,
@@ -47,10 +46,10 @@ want = [
   '[sandwiches]\n',
   'cheese + bacon = 1\n',
   'salmon + onion = 1\n',
-  '\n',
 ];
 equal(dod2ini(fridge, opt), want);
 equal(custom(fridge), want);
+
 
 opt = { keySort: true };
 custom = dod2ini.cfg(opt);
@@ -64,10 +63,44 @@ want = [
   'juice=grape',
   'milk=empty :-(',
   'water=2',
-  '',
 ];
 equal(dod2ini(fridge, opt), want);
 equal(custom(fridge), want);
+
+
+fridge = {
+  Lamp: {
+    onWhileOpen: true,
+    onWhileClosed: false,
+    blinkPattern: null,
+    plannedFailureDate: undefined,
+  },
+};
+want = [
+  '[Lamp]',
+  'onWhileOpen=true',
+  'onWhileClosed=false',
+  'blinkPattern=null',
+];
+equal(dod2ini(fridge), want);
+
+
+opt = {
+  translateValues: {
+    'true': 'Yes',
+    'false': 'No',
+    'null': null,
+    'undefined': 'Never',
+  }
+};
+want = [
+  '[Lamp]',
+  'onWhileOpen=Yes',
+  'onWhileClosed=No',
+  'plannedFailureDate=Never',
+];
+equal(dod2ini(fridge, opt), want);
+
 
 
 
