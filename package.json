@@ -1,5 +1,5 @@
 { "name": "dict-of-dicts-to-ini-lines-pmb",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Translate your dictionary object of dictionary objects to an array of strings that could be lines of a .ini file.",
   "keywords": [
     "array",
@@ -28,6 +28,7 @@
   "browser": {
   },
   "devDependencies": {
+    "equal-pmb": "^0.1.20"
   },
 
 
