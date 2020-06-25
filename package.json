@@ -1,0 +1,35 @@
+{ "name": "dict-of-dicts-to-ini-lines-pmb",
+  "version": "0.0.1",
+  "description": "Translate your dictionary object of dictionary objects to an array of strings that could be lines of a .ini file.",
+  "keywords": [
+    "array",
+    "dict",
+    "ini"
+  ],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/dict-of-dicts-to-ini-lines-pmb-js/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/dict-of-dicts-to-ini-lines-pmb-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/dict-of-dicts-to-ini-lines-pmb-js/issues"
+  },
+  "contributors": [],
+
+  "private": false, "license": "ISC",
+
+  "main": "dod2ini.js",
+  "scripts": { "test": "nodejs test.usage.js" },
+  "directories": { "test": "test" },
+
+  "dependencies": {},
+  "browser": {
+  },
+  "devDependencies": {
+  },
+
+
+  "npm vs. BOM = Unexpected token": "-*- coding: UTF-8 -*-"
+}
