@@ -48,6 +48,9 @@ that will be used as the key-value-pairs.
       values. Just avoid using objects or nested Arrays as values.
     * A result of `undefined` means "keep the original value", and `null`
       means "skip this pair".
+* `skipSectionName`: If string, omit section header line for the section with
+  this name. Can also be `false` to add header lines for all sections.
+  Default: `'\n'`
 
 
 

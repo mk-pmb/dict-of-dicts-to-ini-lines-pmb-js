@@ -26,6 +26,7 @@ function dod2ini(sectionsDict, opt) {
   if (!opt) { opt = false; }
   var lines = [],
     transVal = opt.translateValues,
+    skipSectionName = ifUndef(opt.skipSectionName, '\n'),
     pairSep = ifUndef(opt.pairSep, '='),
     eol = ifUndef(opt.eol, '');
   if (transVal && ((typeof transVal) !== 'function')) {
@@ -33,7 +34,7 @@ function dod2ini(sectionsDict, opt) {
   }
   eachKey(sectionsDict, (opt.sectSort || opt.sort), function sect(s, i) {
     if (i > 0) { lines.push(eol); }
-    lines.push('[' + s + ']' + eol);
+    if (s !== skipSectionName) { lines.push('[' + s + ']' + eol); }
     s = sectionsDict[s];
     eachKey(s, (opt.keySort || opt.sort), function pair(k) {
       [].concat(s[k]).forEach(function val(v) {

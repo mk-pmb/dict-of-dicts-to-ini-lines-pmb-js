@@ -101,6 +101,19 @@ want = [
 ];
 equal(dod2ini(fridge, opt), want);
 
+fridge = {
+  '\n': {
+    color: 'white',
+    weight: 12,
+  },
+};
+opt = null;
+want = [
+  'color=white',
+  'weight=12',
+];
+equal(dod2ini(fridge), want);
+
 
 
 
