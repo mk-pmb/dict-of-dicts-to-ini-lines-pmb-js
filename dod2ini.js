@@ -28,6 +28,7 @@ function dod2ini(sectionsDict, opt) {
     transVal = opt.translateValues,
     skipSectionName = ifUndef(opt.skipSectionName, '\n'),
     pairSep = ifUndef(opt.pairSep, '='),
+    pairInd = String(opt.pairInd || ''),
     eol = ifUndef(opt.eol, '');
   if (transVal && ((typeof transVal) !== 'function')) {
     transVal = translateValues.bind(null, transVal);
@@ -40,7 +41,7 @@ function dod2ini(sectionsDict, opt) {
       [].concat(s[k]).forEach(function val(v) {
         if (transVal) { v = transVal(v); }
         if (v === undefined) { return; }
-        lines.push(String(k) + pairSep + String(v) + eol);
+        lines.push(pairInd + String(k) + pairSep + String(v) + eol);
       });
     });
   });

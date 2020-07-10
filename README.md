@@ -37,6 +37,7 @@ that will be used as the key-value-pairs.
 * `keySort`: If truthy, override `sort` with respect to keys.
 * `eol`: Append this string to each line. Defaults to empty string.
 * `pairSep`: Put this string between key and value. Defaults to `'='`.
+* `pairInd`: Put this string before the key. Defaults to the empty string.
 * `translateValues`: If truthy, try to translate values.
     This can be used to not suppress `undefined` values (by translating them
     to e.g. the empty string), and to suppress unwanted values (by translating
